@@ -1,0 +1,1967 @@
+/* =========================================================
+   PORTFÓLIO — LUCAS VELOZO  v2.0
+   Design tokens: Preto profundo + Amarelo vibrante
+   Sem frameworks. Sem !important desnecessário.
+   ========================================================= */
+
+/* ============================================================
+   1. CSS VARIABLES — Dark Mode (padrão)
+   ============================================================ */
+:root {
+  /* Cores base */
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #131313;
+  --color-bg-elevated-2: #1a1a1a;
+  --color-border: #2a2a2a;
+  --color-border-soft: #1e1e1e;
+
+  --color-text: #f2f2ef;
+  --color-text-muted: #9c9c97;
+  --color-text-faint: #6b6b67;
+
+  --color-yellow: #ffd100;
+  --color-yellow-dim: #cca300;
+  --color-yellow-soft: rgba(255, 209, 0, 0.08);
+  --color-yellow-soft-str: rgba(255, 209, 0, 0.16);
+  --color-yellow-glow: rgba(255, 209, 0, 0.25);
+  /* Texto sobre fundo amarelo (ex.: botão primário) — fixo, não muda com o tema */
+  --color-on-yellow: #0a0a0a;
+
+  /* Tipografia */
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --container-width: 1120px;
+  --radius: 6px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s ease;
+}
+
+/* ============================================================
+   2. LIGHT THEME
+   ============================================================ */
+[data-theme="light"] {
+  --color-bg: #f5f5f0;
+  --color-bg-elevated: #ffffff;
+  --color-bg-elevated-2: #ebebeb;
+  --color-border: #d0d0d0;
+  --color-border-soft: #e0e0e0;
+  --color-text: #0d0d0d;
+  --color-text-muted: #555555;
+  --color-text-faint: #888888;
+
+  --color-yellow: #8a6800;
+  --color-yellow-dim: #6b5000;
+  --color-yellow-soft: rgba(138, 104, 0, 0.10);
+  --color-yellow-soft-str: rgba(138, 104, 0, 0.18);
+}
+
+/* ============================================================
+   3. EASTER EGG THEME (DEVLINK)
+   ============================================================ */
+.easter-egg {
+  --color-yellow: #a78bfa;
+  --color-yellow-dim: #7c3aed;
+  --color-yellow-soft: rgba(167, 139, 250, 0.10);
+  --color-yellow-glow: rgba(167, 139, 250, 0.30);
+}
+
+/* ============================================================
+   4. RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-color: var(--color-yellow-dim) var(--color-bg);
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+input,
+textarea {
+  cursor: text;
+}
+
+/* BUG CORRIGIDO: cursor:none era aplicado sempre, escondendo o cursor nativo
+   mesmo quando o cursor customizado (JS) não estava ativo — por exemplo com
+   prefers-reduced-motion, deixando a página sem NENHUM cursor visível.
+   Agora só some quando a classe abaixo confirma que o JS assumiu o controle. */
+html.has-custom-cursor body,
+html.has-custom-cursor button {
+  cursor: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-yellow);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background-color: var(--color-yellow);
+  color: var(--color-on-yellow);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-yellow-dim);
+  border: 3px solid var(--color-bg);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-yellow);
+}
+
+/* ============================================================
+   5. LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.section {
+  padding: 96px 0;
+  border-top: 1px solid var(--color-border-soft);
+  transition: background-color var(--transition-slow);
+}
+
+.section--alt {
+  background-color: var(--color-bg-elevated);
+}
+
+.section__intro {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.section__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-text);
+}
+
+/* ============================================================
+   6. PRELOADER
+   ============================================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 320px;
+}
+
+.preloader__logo {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-yellow);
+  animation: preloader-pulse 1s ease-in-out infinite;
+  margin-bottom: 8px;
+}
+
+.preloader__logs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.preloader__log-line {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  animation: slide-in-left 0.3s ease forwards;
+}
+
+.preloader__log-line:last-child {
+  color: var(--color-yellow);
+}
+
+@keyframes preloader-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================================
+   7. CUSTOM CURSOR (bloco sólido de terminal)
+   ============================================================ */
+.custom-cursor {
+  position: fixed;
+  width: 14px;
+  height: 18px;
+  background-color: var(--color-yellow);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-3px, -2px);
+  animation: cursor-blink 1s step-end infinite;
+  transition: background-color var(--transition-base);
+  will-change: transform;
+}
+
+@keyframes cursor-blink {
+
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   8. LEITURA PROGRESS BAR
+   ============================================================ */
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-yellow-dim), var(--color-yellow));
+  z-index: 200;
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ============================================================
+   9. COPY TOAST
+   ============================================================ */
+.copy-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: var(--color-yellow);
+  color: var(--color-on-yellow);
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  z-index: 9997;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.copy-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   10. BOTÕES
+   ============================================================ */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.btn--primary {
+  background-color: var(--color-yellow);
+  color: var(--color-on-yellow);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-yellow-dim);
+  box-shadow: 0 8px 24px var(--color-yellow-soft);
+}
+
+.btn--primary:active {
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  color: var(--color-yellow);
+  border-color: var(--color-border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-yellow-dim);
+  background-color: var(--color-yellow-soft);
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(0);
+  animation: ripple-expand 0.65s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Confetti particles */
+.confetti-particle {
+  position: fixed;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fly 0.85s cubic-bezier(.25, .46, .45, .94) forwards;
+}
+
+@keyframes confetti-fly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) rotate(360deg) scale(0.4);
+  }
+}
+
+/* ============================================================
+   11. HEADER (glassmorphism intenso)
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 209, 0, 0.07);
+  transition: background-color var(--transition-slow), border-color var(--transition-slow);
+}
+
+[data-theme="light"] .header {
+  background-color: rgba(245, 245, 240, 0.75);
+  border-bottom-color: rgba(255, 209, 0, 0.15);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.logo__bracket {
+  color: var(--color-yellow);
+}
+
+.logo:hover .logo__bracket {
+  color: var(--color-yellow-dim);
+}
+
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--color-yellow);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background-color: var(--color-yellow-soft);
+  border-color: var(--color-yellow-dim);
+  transform: rotate(20deg);
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav__link {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.nav__link:hover {
+  color: var(--color-yellow);
+}
+
+.nav__index {
+  font-family: var(--font-mono);
+  color: var(--color-yellow-dim);
+  font-size: 0.78rem;
+}
+
+.nav__link--cta {
+  color: var(--color-yellow);
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.nav__link--cta:hover {
+  border-color: var(--color-yellow-dim);
+  background-color: var(--color-yellow-soft);
+  transform: translateY(-2px);
+}
+
+/* Hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.nav-toggle__bar {
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-yellow);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ============================================================
+   12. HERO
+   ============================================================ */
+.hero {
+  padding: 64px 0 96px;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__inner {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Background canvases */
+.matrix-canvas,
+.particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.matrix-canvas {
+  opacity: 0.04;
+  z-index: 0;
+}
+
+.particles-canvas {
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Geometric floating shapes */
+.geo-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.geo-shape {
+  position: absolute;
+  border: 1px solid var(--color-yellow);
+  opacity: 0.07;
+  will-change: transform;
+}
+
+.geo-shape--1 {
+  width: 80px;
+  height: 80px;
+  top: 12%;
+  right: 8%;
+  animation: geo-float 7s ease-in-out infinite;
+}
+
+.geo-shape--2 {
+  width: 50px;
+  height: 50px;
+  top: 60%;
+  right: 15%;
+  animation: geo-float 9s ease-in-out infinite 1.5s;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border: none;
+  background: var(--color-yellow);
+  opacity: 0.05;
+}
+
+.geo-shape--3 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 4%;
+  border-radius: 50%;
+  animation: geo-float 11s ease-in-out infinite 0.8s;
+}
+
+.geo-shape--4 {
+  width: 40px;
+  height: 40px;
+  bottom: 25%;
+  left: 10%;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  border: none;
+  background: var(--color-yellow);
+  opacity: 0.06;
+  animation: geo-float 8s ease-in-out infinite 2s;
+}
+
+.geo-shape--5 {
+  width: 60px;
+  height: 60px;
+  bottom: 15%;
+  right: 5%;
+  animation: geo-float 10s ease-in-out infinite 3s;
+  border-radius: 4px;
+}
+
+@keyframes geo-float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-18px) rotate(30deg);
+  }
+
+  66% {
+    transform: translateY(8px) rotate(-15deg);
+  }
+}
+
+/* ============================================================
+   13. TERMINAL
+   ============================================================ */
+.terminal {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* BUG CORRIGIDO: a animação "neon-pulse" fazia um brilho amarelo pulsar
+     continuamente ao redor do terminal — efeito de brilho neon explicitamente
+     proibido no briefing do projeto. Voltou a ser uma sombra estática. */
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transform-style: preserve-3d;
+  transition: border-color var(--transition-slow), background-color var(--transition-slow);
+  will-change: transform;
+}
+
+/* Terminal bar */
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: var(--color-bg-elevated-2);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-slow);
+}
+
+.terminal__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: opacity var(--transition-fast);
+}
+
+/* BUG CORRIGIDO: as bolinhas usavam vermelho/amarelo/verde no estilo macOS,
+   fora da paleta estrita Preto/Cinza/Amarelo definida no briefing. */
+.terminal__dot--red {
+  background-color: var(--color-border);
+}
+
+.terminal__dot--yellow {
+  background-color: var(--color-text-faint);
+}
+
+.terminal__dot--green {
+  background-color: var(--color-yellow-dim);
+}
+
+.terminal__dot:hover {
+  opacity: 0.75;
+}
+
+.terminal__path {
+  margin-left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+}
+
+/* Terminal body */
+.terminal__body {
+  padding: 28px 32px 24px;
+}
+
+/* ASCII art */
+.terminal__ascii {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--color-yellow-dim);
+  margin-bottom: 20px;
+  white-space: pre;
+  opacity: 0.8;
+  user-select: none;
+}
+
+/* Typing line */
+.terminal__main {
+  margin-bottom: 24px;
+}
+
+.terminal__line {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  min-height: 1.4em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.terminal__prompt {
+  color: var(--color-yellow);
+  font-weight: 700;
+}
+
+.terminal__symbol {
+  color: var(--color-text-faint);
+  margin-right: 6px;
+}
+
+.terminal__typed {
+  color: var(--color-text);
+}
+
+.terminal__cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-left: 2px;
+  background-color: var(--color-yellow);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Heading with glitch */
+.terminal__heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* Glitch keyframes */
+/* BUG CORRIGIDO: o efeito usava magenta (#ff005c) e ciano (#00fff7), fora da
+   paleta estrita Preto/Cinza/Amarelo. O deslocamento (clip-path/transform)
+   foi mantido, só as cores viraram amarelo/cinza. */
+@keyframes glitch-anim {
+  0% {
+    clip-path: none;
+    transform: none;
+  }
+
+  5% {
+    clip-path: polygon(0 20%, 100% 20%, 100% 35%, 0 35%);
+    transform: translate(-4px, 0);
+    color: var(--color-yellow);
+  }
+
+  10% {
+    clip-path: none;
+    transform: none;
+    color: var(--color-text);
+  }
+
+  15% {
+    clip-path: polygon(0 65%, 100% 65%, 100% 80%, 0 80%);
+    transform: translate(4px, 0);
+    color: var(--color-text-faint);
+  }
+
+  20% {
+    clip-path: none;
+    transform: none;
+    color: var(--color-text);
+  }
+
+  22% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%);
+    transform: translate(-2px, 0);
+  }
+
+  24% {
+    clip-path: none;
+    transform: none;
+  }
+
+  100% {
+    clip-path: none;
+    transform: none;
+  }
+}
+
+.terminal__heading.glitch-active {
+  animation: glitch-anim 0.6s steps(1) forwards;
+}
+
+/* Subtitle */
+.terminal__subtitle {
+  font-size: 1.02rem;
+  color: var(--color-text-muted);
+  max-width: 56ch;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+.terminal__subtitle strong {
+  color: var(--color-yellow);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.4s ease;
+}
+
+.terminal__subtitle.is-visible strong {
+  text-decoration-color: rgba(255, 209, 0, 0.5);
+}
+
+/* CTA actions */
+.terminal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Interactive terminal section */
+.terminal__interactive {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.terminal__output {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.terminal__output::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal__output::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.terminal__output-cmd {
+  color: var(--color-text-faint);
+  margin-top: 8px;
+}
+
+.terminal__output-result {
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+  padding-left: 16px;
+  border-left: 2px solid var(--color-border);
+}
+
+/* Syntax colors in terminal output */
+/* BUG CORRIGIDO: azul (#569cd6) e laranja (#ce9178) fora da paleta permitida. */
+.tcmd-keyword {
+  color: var(--color-yellow);
+  font-weight: 600;
+}
+
+.tcmd-string {
+  color: var(--color-text);
+}
+
+.tcmd-comment {
+  color: var(--color-text-faint);
+  font-style: italic;
+}
+
+.tcmd-text {
+  color: var(--color-text);
+}
+
+.terminal__input-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.terminal__input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  flex: 1;
+  caret-color: var(--color-yellow);
+  min-width: 0;
+}
+
+.terminal__input::placeholder {
+  color: var(--color-text-faint);
+}
+
+/* ============================================================
+   14. COUNTERS
+   ============================================================ */
+.section--counters {
+  padding: 64px 0;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.counters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.counter {
+  padding: 28px 16px;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    background-color var(--transition-slow);
+}
+
+.counter:hover {
+  border-color: var(--color-yellow-dim);
+  transform: translateY(-4px);
+}
+
+.counter__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+}
+
+.counter__number {
+  font-family: var(--font-mono);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--color-yellow);
+  line-height: 1;
+}
+
+.counter__plus {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-yellow-dim);
+}
+
+.counter__label {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   15. SOBRE
+   ============================================================ */
+.section__grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 64px;
+}
+
+.about__text {
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  max-width: 68ch;
+  line-height: 1.75;
+}
+
+.about__text strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.about__log {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about__log li {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  padding-left: 16px;
+  border-left: 2px solid var(--color-border);
+  transition: border-color var(--transition-fast);
+}
+
+.about__log li:hover {
+  border-left-color: var(--color-yellow-dim);
+}
+
+.about__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-yellow);
+  margin-right: 8px;
+}
+
+.about__actions {
+  margin-top: 28px;
+}
+
+/* Text highlight animation when visible */
+.about.is-visible .about__text strong {
+  animation: highlight-in 0.6s ease forwards;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+@keyframes highlight-in {
+  from {
+    color: var(--color-text-muted);
+  }
+
+  to {
+    color: var(--color-text);
+  }
+}
+
+/* ============================================================
+   16. HABILIDADES — GRID DE SKILLS
+   ============================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
+  gap: 18px;
+}
+
+.skill-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 26px 14px 20px;
+  background-color: var(--color-bg-elevated);
+  background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 209, 0, 0.06) 0%,
+      transparent 60%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    background-color var(--transition-slow);
+}
+
+/* Barra de destaque inferior — mesma linguagem visual do .project-card, só que horizontal */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-yellow-dim), var(--color-yellow));
+  transition: width var(--transition-base);
+}
+
+.skill-card:hover,
+.skill-card:focus-visible {
+  border-color: var(--color-yellow-dim);
+  transform: translateY(-4px);
+  outline: none;
+}
+
+.skill-card:hover::before,
+.skill-card:focus-visible::before {
+  width: 100%;
+}
+
+/* "Ícone" — badge com a flag da skill em mono, no lugar do logo oficial da tecnologia */
+.skill-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  background-color: var(--color-yellow-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.skill-card:hover .skill-card__icon,
+.skill-card:focus-visible .skill-card__icon {
+  border-color: var(--color-yellow-dim);
+  background-color: var(--color-yellow-soft-str);
+}
+
+.skill-card__flag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-yellow-dim);
+}
+
+.skill-card__name {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.skill-card__desc {
+  font-size: 0.76rem;
+  color: var(--color-text-faint);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   17. PROJETOS
+   ============================================================ */
+
+/* Filtros */
+.project-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: transparent;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  border-color: var(--color-yellow-dim);
+  color: var(--color-yellow);
+  background-color: var(--color-yellow-soft);
+}
+
+.filter-btn.active {
+  transform: translateY(-2px);
+}
+
+/* GitHub stats grid */
+.github-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.github-stat-img {
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  max-width: 100%;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.github-stat-img:hover {
+  border-color: var(--color-yellow-dim);
+  transform: translateY(-3px);
+}
+
+/* Project cards grid */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* GitHub repos area */
+.github-repos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* Project card with spotlight */
+.project-card {
+  background-color: var(--color-bg-elevated);
+  background-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 209, 0, 0.06) 0%,
+      transparent 60%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    background-color var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, var(--color-yellow), transparent);
+  transition: height var(--transition-base);
+}
+
+.project-card:hover {
+  border-color: var(--color-yellow-dim);
+  transform: translateY(-6px);
+}
+
+.project-card:hover::before {
+  height: 100%;
+}
+
+.project-card__index {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-yellow-dim);
+  margin-bottom: 14px;
+}
+
+.project-card__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.project-card__desc {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  line-height: 1.65;
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.project-card__tags li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-faint);
+  border: 1px solid var(--color-border-soft);
+  padding: 4px 9px;
+  border-radius: 4px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.project-card:hover .project-card__tags li {
+  border-color: rgba(255, 209, 0, 0.2);
+  color: var(--color-text-muted);
+}
+
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.project-card__detail-btn {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-yellow);
+  padding: 0;
+  background: none;
+  border: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.project-card__detail-btn:hover {
+  color: var(--color-yellow-dim);
+  transform: translateX(4px);
+}
+
+.project-card__link {
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  transition: color var(--transition-fast);
+  margin-left: auto;
+}
+
+.project-card__link:hover {
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   18. CONTATO
+   ============================================================ */
+.contact {
+  text-align: center;
+}
+
+.contact .section__intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.contact__lead {
+  color: var(--color-text-muted);
+  margin-top: 12px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.contact__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  padding: 24px 20px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.contact__link:hover {
+  border-color: var(--color-yellow-dim);
+  background-color: var(--color-yellow-soft);
+  transform: translateY(-5px);
+}
+
+/* BUG CORRIGIDO: usava o "roxo Discord" (#7289da / rgba(88,101,242,...)),
+   fora da paleta estrita Preto/Cinza/Amarelo do briefing. O card continua
+   se distinguindo pelo ícone, não pela cor. */
+.contact__link--special {
+  border-color: rgba(255, 209, 0, 0.25);
+}
+
+.contact__link--special:hover {
+  border-color: var(--color-yellow-dim);
+  background-color: var(--color-yellow-soft);
+}
+
+.contact__link--cv {
+  border-color: rgba(255, 209, 0, 0.2);
+}
+
+.contact__icon {
+  color: var(--color-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.contact__link:hover .contact__icon {
+  transform: scale(1.15);
+}
+
+.contact__link--special .contact__icon {
+  color: var(--color-yellow);
+}
+
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.contact__link--special .contact__label {
+  color: var(--color-yellow);
+}
+
+.contact__value {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.contact__hint {
+  font-size: 0.72rem;
+  color: var(--color-text-faint);
+  font-family: var(--font-mono);
+}
+
+.contact__extras {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ============================================================
+   19. FOOTER
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--color-border-soft);
+  padding: 28px 0;
+}
+
+.footer p {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+}
+
+/* ============================================================
+   20. BACK TO TOP
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  color: var(--color-on-yellow);
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  z-index: 99;
+  box-shadow: 0 4px 20px rgba(255, 209, 0, 0.3);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-yellow-dim);
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   21. MODALS
+   ============================================================ */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal__content {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: modal-in 0.3s ease;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal__content--qr {
+  max-width: 360px;
+  text-align: center;
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.modal__close:hover {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.modal__eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-yellow-dim);
+  margin-bottom: 8px;
+}
+
+.modal__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.modal__subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+
+.modal__desc {
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.modal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.modal__tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-yellow);
+  border: 1px solid rgba(255, 209, 0, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--color-yellow-soft);
+}
+
+.modal__architecture {
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.modal__architecture h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+#modalArchitecture {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* QR code */
+.qr-code-wrapper {
+  display: inline-flex;
+  padding: 16px;
+  background-color: var(--color-bg-elevated-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin: 0 auto;
+}
+
+.qr-code-wrapper img {
+  border-radius: 4px;
+}
+
+.modal__qr-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+  margin-top: 12px;
+}
+
+/* ============================================================
+   22. SCROLL REVEAL (direcional)
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+[data-reveal="up"] {
+  transform: translateY(32px);
+}
+
+[data-reveal="left"] {
+  transform: translateX(-40px);
+}
+
+[data-reveal="right"] {
+  transform: translateX(40px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Legacy reveal class */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   23. RESPONSIVIDADE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .counters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .github-stats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 860px) {
+  .section__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .github-repos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 16px 24px 24px;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+    z-index: 99;
+  }
+
+  [data-theme="light"] .nav {
+    background-color: rgba(245, 245, 240, 0.97);
+  }
+
+  .nav.is-open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav__link {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .nav__link--cta {
+    margin-top: 8px;
+  }
+
+  .terminal__body {
+    padding: 20px;
+  }
+
+  .terminal__ascii {
+    font-size: 0.58rem;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .counters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact__link {
+    min-width: 140px;
+    flex: 1 1 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__link {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .terminal__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+
+  .counters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .github-repos {
+    grid-template-columns: 1fr;
+  }
+
+  .back-to-top {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .terminal__ascii {
+    display: none;
+  }
+}
+
+/* ============================================================
+   24. ACESSIBILIDADE — prefere movimento reduzido
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .terminal {
+    animation: none !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   25. LENIS (SMOOTH SCROLL)
+   ============================================================ */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

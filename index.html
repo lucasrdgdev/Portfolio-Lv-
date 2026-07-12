@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas Velozo — Desenvolvedor Back-end &amp; Java </title>
+  <meta name="description"
+    content="Portfólio de Lucas Rodrigues Velozo, desenvolvedor Back-end focado em JavaScript, APIs REST e Cloud. Estagiário na Avantia, estudante de ADS na UNIT e Residente Tecnológico no Porto Digital.">
+  <meta name="keywords"
+    content="Lucas Velozo, desenvolvedor Back-end, JavaScript, AWS, APIs REST, Porto Digital, Recife, DEV LINK">
+  <meta name="author" content="Lucas Rodrigues Velozo">
+  <meta property="og:title" content="Lucas Velozo — Desenvolvedor Back-end &amp; Java">
+  <meta property="og:description"
+    content="Portfólio de Lucas Rodrigues Velozo, desenvolvedor Back-end focado em JavaScript, APIs REST e Cloud.">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografia: JetBrains Mono (código/terminal) + Inter (leitura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ======= PRELOADER ======= -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader__content">
+      <div class="preloader__logo">&lt;lv/&gt;</div>
+      <div class="preloader__logs" id="preloaderLogs"></div>
+    </div>
+  </div>
+
+  <!-- ======= CUSTOM CURSOR ======= -->
+  <div id="customCursor" class="custom-cursor" aria-hidden="true"></div>
+
+  <!-- ======= LEITURA PROGRESS BAR ======= -->
+  <div id="readProgress" class="read-progress" aria-hidden="true" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+    aria-valuemax="100"></div>
+
+  <!-- ======= COPY TOAST ======= -->
+  <div id="copyToast" class="copy-toast" role="status" aria-live="polite">✓ E-mail copiado!</div>
+
+  <!-- ======= HEADER ======= -->
+  <header class="header" id="topo">
+    <div class="header__inner container">
+      <a href="#topo" class="logo" aria-label="Voltar ao topo — Lucas Velozo">
+        <span class="logo__bracket">&lt;</span>lv<span class="logo__bracket">/&gt;</span>
+      </a>
+
+      <nav class="nav" id="navMenu" aria-label="Navegação principal">
+        <a href="#sobre" class="nav__link"><span class="nav__index">01.</span> Sobre</a>
+        <a href="#habilidades" class="nav__link"><span class="nav__index">02.</span> Habilidades</a>
+        <a href="#projetos" class="nav__link"><span class="nav__index">03.</span> Projetos</a>
+        <a href="#contato" class="nav__link"><span class="nav__index">04.</span> Contato</a>
+      </nav>
+
+      <div class="header__controls">
+        <button id="themeToggle" class="theme-toggle" aria-label="Ativar modo claro"
+          title="Alternar tema claro/escuro">☀</button>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"
+          aria-label="Abrir menu de navegação">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+      <!-- Matrix rain -->
+      <canvas id="matrixCanvas" class="matrix-canvas" aria-hidden="true"></canvas>
+      <!-- Constellation particles -->
+      <canvas id="particlesCanvas" class="particles-canvas" aria-hidden="true"></canvas>
+      <!-- Floating geo shapes -->
+      <div class="geo-shapes" aria-hidden="true">
+        <div class="geo-shape geo-shape--1"></div>
+        <div class="geo-shape geo-shape--2"></div>
+        <div class="geo-shape geo-shape--3"></div>
+        <div class="geo-shape geo-shape--4"></div>
+        <div class="geo-shape geo-shape--5"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="terminal" id="terminal">
+          <!-- Terminal window bar -->
+          <div class="terminal__bar">
+            <span class="terminal__dot terminal__dot--red" title="Fechar"></span>
+            <span class="terminal__dot terminal__dot--yellow" title="Minimizar"></span>
+            <span class="terminal__dot terminal__dot--green" title="Maximizar"></span>
+            <span class="terminal__path">lucas@portfolio: ~/dev</span>
+          </div>
+
+          <div class="terminal__body">
+
+            <!-- ASCII art -->
+            <pre class="terminal__ascii" aria-label="ASCII art de Lucas Velozo">
+   &lt;lv/&gt; — Desenvolvedor Back-end
+  </pre>
+
+            <!-- Main hero content -->
+            <div id="terminalMain" class="terminal__main">
+              <p class="terminal__line">
+                <span class="terminal__prompt">lucas@dev</span><span class="terminal__symbol">:~$</span>
+                <span id="typedText" class="terminal__typed"></span><span class="terminal__cursor"
+                  aria-hidden="true"></span>
+              </p>
+
+              <h1 class="terminal__heading" id="glitchTitle">Desenvolvedor Back-end &amp; Java</h1>
+
+              <p class="terminal__subtitle">
+                Construindo interfaces e integrações com <strong>JavaScript</strong>,
+                <strong>APIs REST</strong> e infraestrutura em <strong>Cloud</strong> —
+                do estágio na Avantia à formação em ADS e ao AWS re/Start.
+              </p>
+
+              <div class="terminal__actions">
+                <a href="#contato" class="btn btn--primary" id="btnContato">Entrar em contato</a>
+                <a href="#projetos" class="btn btn--ghost" id="btnProjetos">Ver projetos ↓</a>
+              </div>
+            </div>
+
+            <!-- Interactive terminal -->
+            <div class="terminal__interactive">
+              <div class="terminal__output" id="terminalOutput" aria-live="polite"
+                aria-label="Saída do terminal interativo"></div>
+              <div class="terminal__input-line">
+                <span class="terminal__prompt" aria-hidden="true">lucas@dev</span>
+                <span class="terminal__symbol" aria-hidden="true">:~$</span>
+                <input type="text" id="terminalInput" class="terminal__input"
+                  placeholder="digite help para ver os comandos..." autocomplete="off" spellcheck="false"
+                  aria-label="Terminal interativo — entrada de comando">
+              </div>
+            </div>
+
+          </div><!-- /.terminal__body -->
+        </div><!-- /.terminal -->
+      </div>
+    </section>
+
+    <!-- ==================== COUNTERS ==================== -->
+    <section class="section section--counters" id="stats" aria-label="Números do meu percurso">
+      <div class="container">
+        <div class="counters">
+          <div class="counter" data-target="8" data-suffix="+">
+            <div class="counter__value">
+              <span class="counter__number">0</span><span class="counter__plus">+</span>
+            </div>
+            <span class="counter__label">Tecnologias no Stack</span>
+          </div>
+          <div class="counter" data-target="3" data-suffix="">
+            <div class="counter__value">
+              <span class="counter__number">0</span>
+            </div>
+            <span class="counter__label">Projetos em Destaque</span>
+          </div>
+          <div class="counter" data-target="4" data-suffix="">
+            <div class="counter__value">
+              <span class="counter__number">0</span>
+            </div>
+            <span class="counter__label">Frentes Atuais <br>(Avantia · UNIT · AWS re/Start · Porto Digital)</span>
+          </div>
+          <div class="counter" data-target="1" data-suffix="">
+            <div class="counter__value">
+              <span class="counter__number">0</span>
+            </div>
+            <span class="counter__label">Comunidade Fundada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SOBRE ==================== -->
+    <section class="section" id="sobre">
+      <div class="container section__grid">
+
+        <div class="section__intro" data-reveal="left">
+          <span class="eyebrow">// 01 — sobre</span>
+          <h2 class="section__title">Quem escreveu este código</h2>
+        </div>
+
+        <div class="about" data-reveal="right">
+          <p class="about__text">
+            Sou <strong>Lucas Rodrigues Velozo</strong>, Estagiário de Desenvolvimento na
+            <strong>Avantia</strong>, onde atuo com JavaScript, integrações de APIs REST e
+            automação de processos na plataforma <strong>Sydle One</strong>. Em paralelo, curso
+            <strong>Análise e Desenvolvimento de Sistemas na UNIT</strong> e participo do programa
+            <strong>AWS re/Start</strong>, aprofundando fundamentos de Cloud e infraestrutura.
+          </p>
+          <p class="about__text">
+            Sou <strong>Residente Tecnológico no Porto Digital</strong> e fundador da
+            <strong>DEV LINK</strong>, comunidade voltada a conectar pessoas desenvolvedoras e
+            fortalecer o ecossistema tech local. Este portfólio foi construído inteiramente com
+            HTML, CSS e JavaScript nativos — sem frameworks — como exercício prático dos
+            fundamentos da web.
+          </p>
+
+          <ul class="about__log" aria-label="Linha do tempo resumida">
+            <li><span class="about__tag">Avantia</span> Estágio em Desenvolvimento — JavaScript, APIs REST, Sydle One
+            </li>
+            <li><span class="about__tag">UNIT</span> Graduando em Análise e Desenvolvimento de Sistemas</li>
+            <li><span class="about__tag">AWS re/Start</span> Formação em fundamentos de Cloud</li>
+            <li><span class="about__tag">Porto Digital</span> Residente Tecnológico</li>
+            <li><span class="about__tag">DEV LINK</span> Fundador da comunidade</li>
+          </ul>
+
+          <div class="about__actions">
+            <a href="assets/curriculo.pdf" download="Curriculo_Lucas_Velozo.pdf" class="btn btn--ghost" id="cvDownload">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Baixar Currículo (PDF)
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== HABILIDADES ==================== -->
+    <section class="section section--alt" id="habilidades">
+      <div class="container">
+
+        <div class="section__intro" data-reveal="up">
+          <span class="eyebrow">// 02 — habilidades</span>
+          <h2 class="section__title">Stack &amp; ferramentas</h2>
+        </div>
+
+        <!-- Grid de habilidades -->
+        <div class="skills-grid" data-reveal="up" role="list" aria-label="Lista de habilidades técnicas">
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">JS</div>
+            <span class="skill-card__flag">--js</span>
+            <h3 class="skill-card__name">JavaScript</h3>
+            <p class="skill-card__desc">Lógica, DOM, ES6+, Fetch API</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">API</div>
+            <span class="skill-card__flag">--rest</span>
+            <h3 class="skill-card__name">APIs REST</h3>
+            <p class="skill-card__desc">Fetch, Axios, REST, JSON</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">DB</div>
+            <span class="skill-card__flag">--db</span>
+            <h3 class="skill-card__name">Banco de Dados</h3>
+            <p class="skill-card__desc">SQL, Consultas, Modelagem de dados</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">BPM</div>
+            <span class="skill-card__flag">--sydle</span>
+            <h3 class="skill-card__name">Sydle One (BPM)</h3>
+            <p class="skill-card__desc">Automação BPM, Plataforma Low-Code</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">AWS</div>
+            <span class="skill-card__flag">--aws</span>
+            <h3 class="skill-card__name">AWS (Cloud)</h3>
+            <p class="skill-card__desc">EC2, S3, IAM, Lambda, VPC</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">$_</div>
+            <span class="skill-card__flag">--linux</span>
+            <h3 class="skill-card__name">Linux</h3>
+            <p class="skill-card__desc">Bash, Shell Script, CLI, linha de comando</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">&infin;</div>
+            <span class="skill-card__flag">--agile</span>
+            <h3 class="skill-card__name">Metodologias Ágeis</h3>
+            <p class="skill-card__desc">Scrum, Kanban, Git Flow, sprints</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">if()</div>
+            <span class="skill-card__flag">--logic</span>
+            <h3 class="skill-card__name">Lógica de Programação</h3>
+            <p class="skill-card__desc">Algoritmos, Estruturas de Dados, complexidade</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">&lt;/&gt;</div>
+            <span class="skill-card__flag">--html</span>
+            <h3 class="skill-card__name">HTML5</h3>
+            <p class="skill-card__desc">HTML5 semântico, Acessibilidade, SEO</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">{ }</div>
+            <span class="skill-card__flag">--css</span>
+            <h3 class="skill-card__name">CSS3</h3>
+            <p class="skill-card__desc">Flexbox, Grid, Animações, variáveis CSS</p>
+          </article>
+
+          <article class="skill-card" tabindex="0" role="listitem">
+            <div class="skill-card__icon" aria-hidden="true">git</div>
+            <span class="skill-card__flag">--git</span>
+            <h3 class="skill-card__name">Git &amp; GitHub</h3>
+            <p class="skill-card__desc">Branches, Pull Requests, CI/CD</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== PROJETOS ==================== -->
+    <section class="section" id="projetos">
+      <div class="container">
+
+        <div class="section__intro" data-reveal="up">
+          <span class="eyebrow">// 03 — projetos</span>
+          <h2 class="section__title">O que já foi commitado</h2>
+        </div>
+
+        <!-- Filtros de projetos -->
+        <div class="project-filters" role="group" aria-label="Filtrar projetos por tecnologia">
+          <button class="filter-btn active" data-filter="all" id="filterAll">Todos</button>
+          <button class="filter-btn" data-filter="javascript" id="filterJS">JavaScript</button>
+          <button class="filter-btn" data-filter="aws" id="filterAWS">AWS / Cloud</button>
+          <button class="filter-btn" data-filter="html" id="filterHTML">HTML / CSS</button>
+        </div>
+
+        <!-- Grid de projetos -->
+        <div class="projects" id="projectsGrid">
+
+          <article class="project-card" data-category="javascript"
+            data-architecture="Consumo de endpoints REST com fetch() nativo, parsing de JSON, tratamento de erros com try/catch e renderização dinâmica no DOM. Implementação de cache básico para evitar requisições redundantes e melhora de performance.">
+            <p class="project-card__index">projeto/01</p>
+            <h3 class="project-card__title">Integração de API REST</h3>
+            <p class="project-card__desc">
+              Consumo e tratamento de dados de APIs REST com JavaScript, incluindo autenticação,
+              tratamento de erros e exibição dinâmica dos resultados na interface.
+            </p>
+            <ul class="project-card__tags">
+              <li>JavaScript</li>
+              <li>REST</li>
+              <li>Fetch API</li>
+            </ul>
+            <div class="project-card__footer">
+              <button class="project-card__detail-btn"
+                aria-label="Ver detalhes do projeto Integração de API REST">Detalhes →</button>
+              <a href="#" class="project-card__link">Repositório em breve</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="aws"
+            data-architecture="Implantação em EC2 com Amazon Linux, configuração de Security Groups, armazenamento de assets no S3, setup de IAM roles com princípio de menor privilégio e boas práticas de disponibilidade estudadas no AWS re/Start.">
+            <p class="project-card__index">projeto/02</p>
+            <h3 class="project-card__title">Deploy em Nuvem</h3>
+            <p class="project-card__desc">
+              Publicação de uma aplicação em ambiente Cloud aplicando conceitos práticos
+              estudados no AWS re/Start, com foco em disponibilidade e boas práticas de infraestrutura.
+            </p>
+            <ul class="project-card__tags">
+              <li>AWS</li>
+              <li>Linux</li>
+              <li>Cloud</li>
+            </ul>
+            <div class="project-card__footer">
+              <button class="project-card__detail-btn" aria-label="Ver detalhes do projeto Deploy em Nuvem">Detalhes
+                →</button>
+              <a href="#" class="project-card__link">Repositório em breve</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="html"
+            data-architecture="Página construída com HTML5 semântico, CSS3 puro (variáveis, Grid, Flexbox e animações) e JavaScript vanilla. Zero dependências externas, com foco em performance (Lighthouse 95+), acessibilidade WCAG AA e identidade visual da comunidade DEV LINK.">
+            <p class="project-card__index">projeto/03</p>
+            <h3 class="project-card__title">Landing Page DEV LINK</h3>
+            <p class="project-card__desc">
+              Página de apresentação da comunidade DEV LINK, fundada para conectar pessoas
+              desenvolvedoras — construída com HTML, CSS e JavaScript puros.
+            </p>
+            <ul class="project-card__tags">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+            </ul>
+            <div class="project-card__footer">
+              <button class="project-card__detail-btn" aria-label="Ver detalhes da Landing Page DEV LINK">Detalhes
+                →</button>
+              <a href="#" class="project-card__link">Repositório em breve</a>
+            </div>
+          </article>
+
+        </div><!-- /#projectsGrid -->
+
+        <!-- Repos do GitHub via API (injetados pelo JS) -->
+        <div class="github-repos" id="githubRepos" aria-label="Repositórios públicos no GitHub"></div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO ==================== -->
+    <section class="section section--alt" id="contato">
+      <div class="container contact">
+
+        <div class="section__intro" data-reveal="up">
+          <span class="eyebrow">// 04 — contato</span>
+          <h2 class="section__title">Vamos conversar?</h2>
+          <p class="contact__lead">Aberto a oportunidades, parcerias e trocas com a comunidade tech.</p>
+        </div>
+
+        <div class="contact__links" data-reveal="up">
+
+          <!-- E-mail (copy to clipboard) -->
+          <button class="contact__link" id="copyEmail" title="Clique para copiar o e-mail">
+            <span class="contact__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"
+                aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </span>
+            <span class="contact__label">E-mail</span>
+            <span class="contact__value">lucasrdgdev@gmail.com</span>
+            <span class="contact__hint">clique para copiar</span>
+          </button>
+
+          <!-- LinkedIn -->
+          <a class="contact__link" href="https://linkedin.com/in/lkrdgdev" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn de Lucas Velozo (abre nova aba)">
+            <span class="contact__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"
+                aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </span>
+            <span class="contact__label">LinkedIn</span>
+            <span class="contact__value">LinkedIn</span>
+          </a>
+
+          <!-- GitHub -->
+          <a class="contact__link" href="https://github.com/lucasrdgdev" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub de Lucas Velozo (abre nova aba)">
+            <span class="contact__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"
+                aria-hidden="true">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+            </span>
+            <span class="contact__label">GitHub</span>
+            <span class="contact__value">GitHub</span>
+          </a>
+
+          <!-- DEV LINK — Discord -->
+          <a class="contact__link contact__link--special" href="#" id="devlinkContact" target="_blank"
+            rel="noopener noreferrer" aria-label="Comunidade DEV LINK no Discord (abre nova aba)">
+            <span class="contact__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"
+                aria-hidden="true">
+                <path
+                  d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
+              </svg>
+            </span>
+            <span class="contact__label">DEV LINK</span>
+            <span class="contact__value">Comunidade no Discord</span>
+          </a>
+
+          <!-- Download CV -->
+          <a class="contact__link contact__link--cv" href="assets/curriculo.pdf" download="Curriculo_Lucas_Velozo.pdf" id="cvContact" aria-label="Currículo de Lucas Velozo (PDF)">
+            <span class="contact__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"
+                aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </span>
+            <span class="contact__label">Currículo</span>
+            <span class="contact__value">Baixar em PDF</span>
+          </a>
+
+        </div><!-- /.contact__links -->
+
+        <div class="contact__extras">
+          <button id="qrCodeBtn" class="btn btn--ghost" aria-label="Abrir QR Code de contato">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+              <rect width="5" height="5" x="3" y="3" rx="1" />
+              <rect width="5" height="5" x="16" y="3" rx="1" />
+              <rect width="5" height="5" x="3" y="16" rx="1" />
+              <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+              <path d="M21 21v.01" />
+              <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+              <path d="M3 12h.01" />
+              <path d="M12 3h.01" />
+              <path d="M12 16v.01" />
+              <path d="M16 12h1" />
+              <path d="M21 12v.01" />
+              <path d="M12 21v-1" />
+            </svg>
+            Ver QR Code de contato
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <p class="container">
+      <span>&copy; <span id="year"></span> Lucas Rodrigues Velozo.</span>
+    </p>
+  </footer>
+
+  <!-- ======= BACK TO TOP ======= -->
+  <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo da página">↑</button>
+
+  <!-- ======= PROJECT MODAL ======= -->
+  <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" id="modalClose" aria-label="Fechar detalhes do projeto">&times;</button>
+      <span class="modal__eyebrow">// detalhe do projeto</span>
+      <h2 class="modal__title" id="modalTitle"></h2>
+      <p class="modal__desc" id="modalDesc"></p>
+      <div class="modal__tags" id="modalTags"></div>
+      <div class="modal__architecture">
+        <h3>Arquitetura &amp; Decisões Técnicas</h3>
+        <p id="modalArchitecture"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= QR CODE MODAL ======= -->
+  <div id="qrModal" class="modal" role="dialog" aria-modal="true" aria-label="QR Code de contato">
+    <div class="modal__overlay"></div>
+    <div class="modal__content modal__content--qr">
+      <button class="modal__close" id="qrModalClose" aria-label="Fechar QR Code">&times;</button>
+      <h2 class="modal__title">QR Code — Contato</h2>
+      <p class="modal__subtitle">Escaneie para ver meu perfil no GitHub.</p>
+      <div class="qr-code-wrapper">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/lucasrdgdev&bgcolor=131313&color=ffd100&margin=10"
+          alt="QR Code para o perfil do GitHub de Lucas Velozo" width="200" height="200">
+      </div>
+      <p class="modal__qr-label">github.com/lucasrdgdev</p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+
+</html>
