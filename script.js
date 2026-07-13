@@ -448,7 +448,18 @@ document.addEventListener('DOMContentLoaded', () => {
   termInput?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { runCmd(termInput.value); termInput.value = ''; }
   });
-  termEl?.addEventListener('click', () => termInput?.focus());
+
+  termEl?.addEventListener('click', (e) => {
+    const interactiveTarget = e.target instanceof Element
+      ? e.target.closest('a, button, input, textarea, select, [role="button"]')
+      : null;
+
+    if (interactiveTarget) return;
+
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    termInput?.focus();
+  });
 
   /* ══════════════════════════════════════════════════════
      11. TILT 3D — terminal acompanha o mouse
