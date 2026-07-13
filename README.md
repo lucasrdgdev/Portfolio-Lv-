@@ -1,3 +1,4 @@
+#<lv/>— Portfólio Lucas Velozo
 Site pessoal construído do zero, sem framework, sem build tool, sem nada baixado via npm — só HTML, CSS e JavaScript puro mesmo. A ideia por trás disso foi simples: eu queria um lugar pra colocar minha trajetória (Avantia, UNIT, AWS re/Start, Porto Digital, DEV LINK) que ao mesmo tempo servisse como prova de que eu manjo os fundamentos da web antes de sair usando framework pra tudo.
 
 Estética: terminal escuro, preto e amarelo, fonte JetBrains Mono. Se você é dev e caiu aqui, vai se sentir em casa.
