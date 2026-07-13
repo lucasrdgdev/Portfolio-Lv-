@@ -1,132 +1,95 @@
-#<lv/>— Portfólio Lucas Velozo
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=131313&height=120&section=header&text=Lucas%20Velozo&fontColor=FFD100&fontSize=40&fontAlignY=65&desc=%3Clv/%3E%20Desenvolvedor%20Back-end&descAlignY=85&descColor=FFD100"/>
 
+<div align="center">
 
-Site pessoal construído do zero, sem framework, sem build tool, sem nada baixado via npm — só HTML, CSS e JavaScript puro mesmo. A ideia por trás disso foi simples: eu queria um lugar pra colocar minha trajetória (Avantia, UNIT, AWS re/Start, Porto Digital, DEV LINK) que ao mesmo tempo servisse como prova de que eu manjo os fundamentos da web antes de sair usando framework pra tudo.
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=24&pause=1000&color=FFD100&background=131313&center=true&width=520&lines=Ol%C3%A1%2C+meu+nome+%C3%A9+Lucas+Velozo;Desenvolvedor+Back-end+%26+JavaScript;Estudante+de+ADS+%40+UNIT;Residente+Tecnol%C3%B3gico+%40+Porto+Digital)](https://git.io/typing-svg)
 
-Estética: terminal escuro, preto e amarelo, fonte JetBrains Mono. Se você é dev e caiu aqui, vai se sentir em casa.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-131313?style=for-the-badge&logo=linkedin&logoColor=FFD100)](https://linkedin.com/in/lkrdgdev)
+[![Gmail](https://img.shields.io/badge/Gmail-131313?style=for-the-badge&logo=gmail&logoColor=FFD100)](mailto:lucasrdgdev@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-131313?style=for-the-badge&logo=github&logoColor=FFD100)](https://github.com/lucasrdgdev)
+[![Discord](https://img.shields.io/badge/DEV_LINK-131313?style=for-the-badge&logo=discord&logoColor=FFD100)](https://discord.gg/DzbAqhsB7R)
 
-🔗 Live:  (cole aqui a URL depois do deploy)
+</div>
 
+---
 
-Sobre o projeto
+## `//` sobre mim
 
-Não é apenas uma página estática parada. Tem um pré-carregador que simula inicialização do sistema, um terminal de verdade que aceita comandos digitados, cursor customizado, tema claro/escuro que persiste entre visitas, chuva de matriz no fundo do herói, partículas inseridas tipo constelação, contadores que sobem quando entram na tela, e até um ovo de páscoa escondido (tenta digitar devlinkem qualquer lugar da página).
+```bash
+lucas@dev:~$ whoami
+```
 
-Grande parte disso eu fiz mais por diversão e pra treinar Canvas API, IntersectionObserver e manipulação de DOM sem depender de biblioteca nenhuma — só o Lenis pra scroll suave, que é a única dependência externa do projeto inteiro.
+Sou **estudante de Análise e Desenvolvimento de Sistemas** na Universidade Tiradentes (UNIT), em Recife/PE, e atuo como **estagiário de desenvolvimento** na **Avantia Tecnologia e Engenharia**, trabalhando com a plataforma **Sydle One**, **JavaScript** e **APIs REST**.
 
-O que tem em cada seção
+Sou **Residente Tecnológico no Porto Digital**, o maior parque tecnológico do Brasil, onde vivencio metodologias ágeis, prototipação e design thinking na prática. Também sou **fundador da comunidade DEV LINK**, focada em conectar devs através de networking e compartilhamento de conhecimento, e membro de comunicação da **LATEC** (Liga Acadêmica de Tecnologia da UNIT).
 
-Herói — terminal falso com efeito de digitação (máquina de escrever), mais um terminal de verdade logo abaixo dele, funcional, que responde a comandos.
+Produzo conteúdo educacional de tecnologia em formato curto para redes sociais, no projeto **"Tech em 60s"**.
 
-Sobre — quem eu sou, o que eu faço hoje e uma linha do tempo resumida (Avantia, UNIT, AWS re/Start, Porto Digital, DEV LINK).
+> 📍 Recife, PE — Brasil &nbsp;·&nbsp; 🎓 Tecnólogo em ADS (UNIT) &nbsp;·&nbsp; ☁️ AWS re/Start &nbsp;·&nbsp; ⚡ Curioso por IA aplicada ao desenvolvimento
 
-Habilidades — grade de cartões com a pilha que eu uso no dia a dia (JS, REST, banco de dados, Sydle One, AWS, Linux, Ágil, lógica, HTML/CSS, Git).
+```bash
+lucas@dev:~$ cat objetivo.txt
+> Em busca de oportunidades como Desenvolvedor Back-end,
+> contribuindo com projetos desafiadores e evoluindo como engenheiro de software.
+```
 
-Projetos — cartões filtráveis ​​por categoria (JavaScript / AWS-Cloud / HTML-CSS), com modal de detalhes que mostram as decisões técnicas de cada um. Essa seção também puxa automaticamente meus repositórios públicos mais recentes direto da API do GitHub, sem precisar de token nem nada — é tudo público.
+---
 
-Contato — e-mail com botão de copiar (com brinde de confirmação), LinkedIn, GitHub, Discord da DEV LINK, download do currículo em PDF e um QR Code gerado na hora apontando pro meu GitHub.
+## `//` stack
 
-O terminal interativo
+### Back-end
+![JavaScript](https://img.shields.io/badge/JavaScript-131313?style=for-the-badge&logo=javascript&logoColor=FFD100)
+![Node.js](https://img.shields.io/badge/Node.js-131313?style=for-the-badge&logo=nodedotjs&logoColor=FFD100)
+![REST APIs](https://img.shields.io/badge/REST_APIs-131313?style=for-the-badge&logo=jsonwebtokens&logoColor=FFD100)
+![Sydle One](https://img.shields.io/badge/Sydle_One_(BPM)-131313?style=for-the-badge&logo=databricks&logoColor=FFD100)
 
-Esse aqui é o detalhe que eu mais gosto. Tem uma entrada de verdade no herói que aceita os seguintes comandos:
+### Front-end
+![HTML5](https://img.shields.io/badge/HTML5-131313?style=for-the-badge&logo=html5&logoColor=FFD100)
+![CSS3](https://img.shields.io/badge/CSS3-131313?style=for-the-badge&logo=css3&logoColor=FFD100)
 
-help       → lista os comandos
-about      → um resumo rápido de quem eu sou
-skills     → stack principal em formato de array JS
-projects   → os projetos em destaque
-contact    → meus contatos
-devlink    → sobre a comunidade DEV LINK
-github     → abre meu GitHub em nova aba
-linkedin   → abre meu LinkedIn em nova aba
-clear      → limpa a tela
+### Cloud & Banco de Dados
+![AWS](https://img.shields.io/badge/AWS_Cloud-131313?style=for-the-badge&logo=amazonaws&logoColor=FFD100)
+![Linux](https://img.shields.io/badge/Linux-131313?style=for-the-badge&logo=linux&logoColor=FFD100)
+![SQL](https://img.shields.io/badge/SQL-131313?style=for-the-badge&logo=postgresql&logoColor=FFD100)
 
-Se você digitar qualquer coisa que não exista, ele te avisa e sugere o help. Tudo escrito manualmente em script.js, sem lib de terminal nenhum.
+### Ferramentas & Metodologias
+![Git](https://img.shields.io/badge/Git-131313?style=for-the-badge&logo=git&logoColor=FFD100)
+![GitHub](https://img.shields.io/badge/GitHub-131313?style=for-the-badge&logo=github&logoColor=FFD100)
+![Postman](https://img.shields.io/badge/Postman-131313?style=for-the-badge&logo=postman&logoColor=FFD100)
+![Agile](https://img.shields.io/badge/Metodologias_Ágeis-131313?style=for-the-badge&logo=jirasoftware&logoColor=FFD100)
+![Obsidian](https://img.shields.io/badge/Obsidian-131313?style=for-the-badge&logo=obsidian&logoColor=FFD100)
 
-Pilha
+---
 
-Nada, nenhum sentido de framework — e é exatamente esse o ponto.
+## `//` projetos em destaque
 
-CamadaTecnologiaEstruturaSemântico HTML5EstiloCSS3 puro (propriedades customizadas, Grid, Flexbox, animações)ComportamentoJavaScript puro (ES6+)Deslize suavementeLenis via CDN (única dependência externa)FontesJetBrains Mono + Inter, via Google FontsDados dos proAPI pública do GitHub ( api.github.com)Código QRapi.qrserver.com
+- 🚨 **Alerta Recife** — plataforma de gestão de calamidades desenvolvida na residência do Porto Digital, em parceria com Defesa Civil e COP Recife. Top 10 de 60 projetos.
+- ☕ **Sistema de Fila Inteligente** — SaaS de gestão de filas para negócios locais via WhatsApp/QR Code, com arquitetura documentada em Obsidian.
+- ☀️ **SolRede** — projeto de energia solar comunitária para famílias de baixa renda em Recife, com pitch, personas e prototipação.
+- 🌐 **Portfólio pessoal** — site com estética terminal dark, construído com HTML, CSS e JavaScript puro.
 
-Nada de React, Vue, Tailwind, bundler ou gerenciador de pacotes. Isso é proposital — o objetivo aqui era dominar o que está por baixo de tudo isso antes de abstrair.
+---
 
-Rodando localmente
+## `//` estatísticas
 
-Como não tem build step nenhum, basta abrir o index.htmlno navegador. Mas se quiser rodar com um servidor local de verdade (recomendado, pra evitar problema de CORS com fontes e afins), qualquer uma dessas resolva:
+<div align="center">
+  <a href="https://github.com/lucasrdgdev" title="GitHub Stats">
+    <img height="165" src="https://github-readme-stats.vercel.app/api?username=lucasrdgdev&show_icons=true&hide_border=true&bg_color=131313&title_color=FFD100&icon_color=FFD100&text_color=ffffff" alt="GitHub stats" />
+  </a>
+  <a href="https://github.com/lucasrdgdev" title="Top Languages">
+    <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucasrdgdev&layout=compact&hide_border=true&bg_color=131313&title_color=FFD100&text_color=ffffff" alt="Top languages" />
+  </a>
+  <a href="https://git.io/streak-stats" title="GitHub Streak">
+    <img height="165" src="https://streak-stats.demolab.com?user=lucasrdgdev&hide_border=true&background=131313&ring=FFD100&fire=FFD100&currStreakLabel=FFD100" alt="GitHub streak" />
+  </a>
+</div>
 
-bash# com Python
-python3 -m http.server 5500
+---
 
-# com Node (npx, sem instalar nada global)
-npx serve .
+<div align="center">
 
-# com a extensão Live Server do VS Code
-# clique com o botão direito no index.html → "Open with Live Server"
+`lucas@dev:~$` **vamos conversar?** → [lucasrdgdev@gmail.com](mailto:lucasrdgdev@gmail.com)
 
-Depois é só acessar http://localhost:5500(ou a porta que aparece).
+</div>
 
-Estrutura de massas
-
-.
-├── index.html          # marcação e conteúdo de todas as seções
-├── style.css            # todo o visual — tema, variáveis, responsividade
-├── script.js             # toda a interatividade (terminal, tema, modais, filtros...)
-└── assets/
-    └── curriculo.pdf      # currículo em PDF pra download
-
-
-Repare que a pasta assets/com o curriculo.pdfprecisa existir no repositório pra o botão de download funcionar — ela não está incluída nesse ZIP/upload, então lembre-se de adicionar antes do deploy.
-
-
-
-Implantar
-
-Como é um site 100% estático, o deploy é o mais simples possível — não tem variável de ambiente, não tem build command, não tem nada pra configurar.
-
-Vercel
-
-
-Importe o repositório em vercel.com/new
-Em Framework Preset , selecione Outro
-Deixa Build Command e Output Directory em branco (ou aponta a raiz .)
-Implantar.
-
-
-Não precisa cor nenhuma variável de ambiente — o projeto não consome nenhuma chave de API privada. As integrações externas (GitHub API, QR Server, Google Fonts) são todas públicas.
-
-Netlify / GitHub Pages
-
-Funciona do mesmo jeito: sobe os três arquivos + a pasta assets/e pronto, sem passo de build.
-
-Acessibilidade e desempenho
-
-Dei atenção real pra isso, não é só enfeite:
-
-
-Respeita prefers-reduced-motion— quem tem essa preferência ativada não recebe preloader animado, matriz chuva, cursor customizado nem scroll suave via Lenis (cai pro scroll nativo do navegador)
-aria-label, aria-live, rolee afins nos componentes interativos (terminal, barra de progresso, modais, brinde de cópia)
-Navegação por teclado funcional nos cards de habilidade e nos modais (fecha com Esc)
-HTML5 semântico com <header>, <main>, <footer>, <section>bem definido
-Meta tags de SEO e Open Graph preenchidas
-
-
-Sobre mim
-
-Sou o Lucas — ou "Velozo", como me chamo nos espaços acadêmicos e profissionais. Atualmente:
-
-
-Estagiário de Desenvolvimento na Avantia , trabalhando com JavaScript, integrações REST e automação na plataforma Sydle One
-Cursando Análise e Desenvolvimento de Sistemas na UNIT (2º período)
-Residente Tecnológico no Porto Digital
-Fundador da DEV LINK , comunidade que conecta pessoas desenvolvedoras em Recife
-Fazendo o programa AWS re/Start
-
-
-Fico ligado em back-end, APIs REST, Cloud e Java. Se quiser trocar uma ideia, os contatos estão todos na seção de contato do site — ou clicaram no botão para copiar e-mail lá, tem um efeito legal.
-
-licença
-
-Sinta-se à vontade para usar esse projeto como referência ou inspiração para seu próprio portfólio. Só peço que não copie o conteúdo pessoal (textos sobre mim, CV, etc.) — o código em si, use como quiser.
-
-
-<sub> feito linha por linha, sem framework, só pra provar que ainda dá. </sub>
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=131313&height=100&section=footer"/>
