@@ -68,24 +68,6 @@ lucas@dev:~$ cat objetivo.txt
 - ☀️ **SolRede** — projeto de energia solar comunitária para famílias de baixa renda em Recife, com pitch, personas e prototipação.
 - 🌐 **Portfólio pessoal** — site com estética terminal dark, construído com HTML, CSS e JavaScript puro.
 
----
-
-## `//` estatísticas
-
-<div align="center">
-  <a href="https://github.com/lucasrdgdev" title="GitHub Stats">
-    <img height="165" src="https://github-readme-stats.vercel.app/api?username=lucasrdgdev&show_icons=true&hide_border=true&bg_color=131313&title_color=FFD100&icon_color=FFD100&text_color=ffffff" alt="GitHub stats" />
-  </a>
-  <a href="https://github.com/lucasrdgdev" title="Top Languages">
-    <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucasrdgdev&layout=compact&hide_border=true&bg_color=131313&title_color=FFD100&text_color=ffffff" alt="Top languages" />
-  </a>
-  <a href="https://git.io/streak-stats" title="GitHub Streak">
-    <img height="165" src="https://streak-stats.demolab.com?user=lucasrdgdev&hide_border=true&background=131313&ring=FFD100&fire=FFD100&currStreakLabel=FFD100" alt="GitHub streak" />
-  </a>
-</div>
-
----
-
 <div align="center">
 
 `lucas@dev:~$` **vamos conversar?** → [lucasrdgdev@gmail.com](mailto:lucasrdgdev@gmail.com)
