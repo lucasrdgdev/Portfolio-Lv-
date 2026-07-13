@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // DEFINIDO APENAS UMA VEZ PARA O ARQUIVO INTEIRO!
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   let lenis;
   const readProgress = document.getElementById('readProgress');
 
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ══════════════════════════════════════════════════════ */
   const cursor = document.getElementById('customCursor');
 
-  if (cursor && !REDUCED) {
+  if (cursor && !REDUCED && supportsHover) {
     document.documentElement.classList.add('has-custom-cursor');
 
     let cursorX = 0, cursorY = 0;
@@ -454,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ══════════════════════════════════════════════════════ */
   const heroSection = document.getElementById('hero');
 
-  if (termEl && heroSection && !REDUCED) {
+  if (termEl && heroSection && !REDUCED && supportsHover) {
     heroSection.addEventListener('mousemove', (e) => {
       const rect   = termEl.getBoundingClientRect();
       const cx     = rect.left + rect.width  / 2;
@@ -488,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ══════════════════════════════════════════════════════
      13. BOTÕES MAGNÉTICOS
   ══════════════════════════════════════════════════════ */
-  if (!REDUCED) {
+  if (!REDUCED && supportsHover) {
     document.querySelectorAll('#btnContato, #btnProjetos').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
@@ -819,6 +820,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const open = navMenu.classList.toggle('is-open');
     navToggle.setAttribute('aria-expanded', String(open));
     navToggle.classList.toggle('is-open', open);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720) {
+      navMenu?.classList.remove('is-open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+      navToggle?.classList.remove('is-open');
+    }
   });
 
   navMenu?.querySelectorAll('.nav__link').forEach(link => {
