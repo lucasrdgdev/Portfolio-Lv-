@@ -371,7 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="tcmd-keyword">contact</span>    → Como entrar em contato
   <span class="tcmd-keyword">devlink</span>    → Sobre a comunidade DEV LINK
   <span class="tcmd-keyword">github</span>     → Abrir perfil no GitHub
-  <span class="tcmd-keyword">clear</span>      → Limpar o terminal`,
+  <span class="tcmd-keyword">clear</span>      → Limpar o terminal
+  <span class="tcmd-keyword">linkedin</span>   → Abrir perfil no LinkedIn
+`,
 
     about: () => `
 <span class="tcmd-comment">// lucas.velozo@portfolio:~</span>
@@ -410,7 +412,10 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open('https://github.com/lucasrdgdev', '_blank');
       return '<span class="tcmd-comment">// abrindo github.com/lucasrdgdev...</span>';
     },
-
+    linkedin: () => {
+      window.open('https://www.linkedin.com/in/lkrdgdev', '_blank');
+      return '<span class="tcmd-comment">// abrindo linkedin.com/lkrdgdev...</span>';
+    },
     clear: () => null,
   };
 

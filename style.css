@@ -612,7 +612,7 @@ button:focus-visible {
 }
 
 .matrix-canvas {
-  opacity: 0.04;
+  opacity: 0.50;
   z-index: 0;
 }
 
